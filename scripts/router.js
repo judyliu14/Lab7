@@ -5,7 +5,7 @@ export const router = {};
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function() {
+router.setState = function(entryNum) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -20,6 +20,14 @@ router.setState = function() {
    *   to make things easier.
    * - Similarly, when viewing an individual entry, a hashed URL might look like https://someurl.com/#entry3
    * 
+  */
+  let entryPage = document.querySelector("main").childNodes[entryNum-1]
+  console.log(entryPage);
+  document.body.setAttribute("class", "single-entry")
+  history.pushState({'page': entryNum}, "entry" + entryNum, "#entry" + entryNum)
+  document.querySelector("entry-page").entry = entryPage.entry;
+
+  /**
    * - Some tips:
    *    1. Push a new state object to the history object using history.pushState() 
    *    2. look up the documentation for how to use pushState() when you try it

@@ -16,3 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 });
+
+document.addEventListener('click', invokeSetstate)
+
+function invokeSetstate(event) {
+  console.log(event.target);
+  for (let i = 0; i < document.querySelector("main").childNodes.length; i++) {
+    if (event.target === document.querySelector("main").childNodes[i]) {
+      setState(i+1);
+    }
+  }
+} 
+
+window.onpopstate = function(event) {
+  alert(
+    `location: ${document.location}, state: ${JSON.stringify(event.state)}`
+  );
+};
