@@ -23,13 +23,16 @@ function invokeSetstate(event) {
   console.log(event.target);
   for (let i = 0; i < document.querySelector("main").childNodes.length; i++) {
     if (event.target === document.querySelector("main").childNodes[i]) {
-      setState(i+1);
+      console.log(event.state);
+      setState(event.state, i+1);
     }
   }
 } 
 
 window.onpopstate = function(event) {
-  alert(
+  console.log(
     `location: ${document.location}, state: ${JSON.stringify(event.state)}`
   );
+  document.body.removeAttribute('class', 'single-entry');
+  document.querySelector("h1").innerHTML = "Journal Entries";
 };
