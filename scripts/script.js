@@ -12,12 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         let newPost = document.createElement("journal-entry");
         newPost.entry = entry;
+        newPost.addEventListener("click", invokeSetstate);
         document.querySelector("main").appendChild(newPost);
       });
     });
 });
 
-document.addEventListener("click", invokeSetstate);
+document.querySelector("h1").addEventListener("click", invokeSetstate);
+document.querySelector("img").addEventListener("click", invokeSetstate);
 
 function invokeSetstate(event) {
   console.log(event.target);
@@ -51,9 +53,9 @@ window.onpopstate = function (event) {
   else if (event.state.page === 0) {
     history.back();
   }
-  // previous state was settings
+  // previous state was settings (prev of that an entry)
   else {
     document.body.setAttribute("class", "single-entry");
-    document.querySelector("h1").innerHTML = "Journal Entries";
+    document.querySelector("h1").innerHTML = "Entry " + event.state.page;
   }
 };
