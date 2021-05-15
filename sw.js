@@ -7,9 +7,11 @@
 
 const CACHE_NAME = "my-site-cache-v1";
 const urlsToCache = [
-  "/",
   "/Lab7",
+  "/Lab7/components/journal-entry.js",
+  "/Lab7/components/entry-page.js",
   "/Lab7/index.html",
+  "/Lab7/scripts/router.js",
   "/Lab7/scripts/script.js",
   "https://cse110lab6.herokuapp.com/entries",
 ];
@@ -23,9 +25,11 @@ self.addEventListener("install", function (event) {
     })
   );
 });
+
 self.addEventListener("activate", (event) => {
   event.waitUntil(clients.claim());
 });
+
 self.addEventListener("fetch", function (event) {
   event.respondWith(
     caches.match(event.request).then(function (response) {
