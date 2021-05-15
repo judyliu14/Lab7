@@ -41,6 +41,14 @@ window.onpopstate = function (event) {
   console.log(
     `location: ${document.location}, state: ${JSON.stringify(event.state)}`
   );
-  document.body.removeAttribute("class", "single-entry");
-  document.querySelector("h1").innerHTML = "Journal Entries";
+  // previous state was no state
+  if (event.state === null) {
+    document.body.removeAttribute("class", "single-entry");
+    document.querySelector("h1").innerHTML = "Journal Entries";
+  }
+  // previous state was settings
+  else {
+    document.body.setAttribute("class", "single-entry");
+    document.querySelector("h1").innerHTML = "Journal Entries";
+  }
 };
