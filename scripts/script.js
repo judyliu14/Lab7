@@ -41,10 +41,15 @@ window.onpopstate = function (event) {
   console.log(
     `location: ${document.location}, state: ${JSON.stringify(event.state)}`
   );
+
   // previous state was no state
   if (event.state === null) {
     document.body.removeAttribute("class", "single-entry");
     document.querySelector("h1").innerHTML = "Journal Entries";
+  }
+  // deal with clicking settings in settings page
+  else if (event.state.page === 0) {
+    history.back();
   }
   // previous state was settings
   else {
