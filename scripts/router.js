@@ -5,7 +5,7 @@ export const router = {};
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function (state, entryNum) {
+router.setState = function (entryNum) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page

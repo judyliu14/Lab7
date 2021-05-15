@@ -24,16 +24,16 @@ function invokeSetstate(event) {
   for (let i = 0; i < document.querySelector("main").childNodes.length; i++) {
     if (event.target === document.querySelector("main").childNodes[i]) {
       console.log(event.state);
-      setState(event.state, i + 1);
+      setState(i + 1);
     }
   }
   // settings
   if (event.target === document.querySelector("img")) {
-    setState(event.state, 0);
+    setState(0);
   }
   // Journal Entries
   if (event.target === document.querySelector("h1")) {
-    setState(event.state, -1);
+    setState(-1);
   }
 }
 
