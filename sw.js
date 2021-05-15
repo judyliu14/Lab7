@@ -5,21 +5,27 @@
 //   - One for activation ( check out MDN's clients.claim() for this step )
 //   - One for fetch requests
 
+const CACHE_NAME = "my-site-cache-v1";
+const urlsToCache = [
+  "/",
+  "/Lab7",
+  "/Lab7/index.html",
+  "/Lab7/scripts/script.js",
+  "https://cse110lab6.herokuapp.com/entries",
+];
+
 self.addEventListener("install", function (event) {
-  var CACHE_NAME = "my-site-cache-v1";
-  var urlsToCache = ["https://cse110lab6.herokuapp.com/entries"];
-
-  self.addEventListener("install", function (event) {
-    // Perform install steps
-    event.waitUntil(
-      caches.open(CACHE_NAME).then(function (cache) {
-        console.log("Opened cache");
-        return cache.addAll(urlsToCache);
-      })
-    );
-  });
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(function (cache) {
+      console.log("Opened cache");
+      return cache.addAll(urlsToCache);
+    })
+  );
 });
-
+self.addEventListener("activate", (event) => {
+  event.waitUntil(clients.claim());
+});
 self.addEventListener("fetch", function (event) {
   event.respondWith(
     caches.match(event.request).then(function (response) {
@@ -30,7 +36,4 @@ self.addEventListener("fetch", function (event) {
       return fetch(event.request);
     })
   );
-});
-self.addEventListener("activate", (event) => {
-  event.waitUntil(clients.claim());
 });
