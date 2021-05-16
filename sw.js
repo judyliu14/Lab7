@@ -13,6 +13,7 @@ const urlsToCache = [
   "/Lab7/index.html",
   "/Lab7/scripts/router.js",
   "/Lab7/scripts/script.js",
+  "/Lab7/styles.css",
   "https://cse110lab6.herokuapp.com/entries",
 ];
 
